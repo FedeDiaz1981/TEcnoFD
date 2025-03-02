@@ -31,6 +31,7 @@
       body {
         background-color: #f4f5f7;
         font-family: "Poppins", sans-serif;
+        background-color: #f4a261;
       }
       .navbar {
         background-color: #0d9488;
@@ -103,28 +104,28 @@
       .hover-green:hover {
         background-color: lightgreen;
         color: rgb(10, 81, 247);
-        font-size: 1.4em;
+        font-size: 1em;
         text-transform: uppercase;
       }
 
       .hover-red:hover {
         background-color: rgb(249, 99, 99);
         color: white;
-        font-size: 1.4em;
+        font-size: 1em;
         text-transform: uppercase;
       }
 
       .hover-blue:hover {
         background-color: yellow;
         color: rgb(249, 99, 99);
-        font-size: 1.4em;
+        font-size: 1em;
         text-transform: uppercase;
       }
 
       .hover-white:hover {
         background-color: white;
         color: green;
-        font-size: 1.4em;
+        font-size: 1em;
         text-transform: uppercase;
       }
 
@@ -153,6 +154,13 @@
         font-style: normal;
       }
 
+      .space-grotesk-fd {
+        font-family: "Space Grotesk", serif;
+        font-optical-sizing: auto;
+        font-weight: 200;
+        font-style: normal;
+      }
+
       .text-green {
         color: rgba(246, 54, 11, 0.877);
       }
@@ -164,101 +172,56 @@
       .text-mora {
         color: #9883bb;
       }
+
+      .bg-red-pastel {
+        background-color: #e76f51;
+      }
+
+      .text-green-pastel {
+        color: #264653 !important;
+      }
+
+      .text-green-pastel-dark {
+        color: #3a5a40 !important;
+      }
+
+      .text-turk-pastel {
+        color: #90e0ef !important;
+      }
+
+      .text-turk-pastel-hv:hover {
+        color: white !important;
+        font-size: 1.4rem;
+      }
+      .text-turk-pastel-hv-lg:hover {
+        color: white !important;
+        font-size: 4em;
+      }
+      .text-bord-pastel {
+        color: #720026 !important;
+      }
+      .text-yellow-pastel{
+        color: yellow;
+      }
+      .bg-salmon-claro {
+        background-color: #ff9b54;
+      }
+      .bg-salmon-medio {
+        background-color: #ce4257;
+      }
+      .bg-yellow-pastel{
+        background-color: yellow;
+        color: #ce4257;
+      }
     </style>
-
-    <script>
-      Chart.pluginService.register({
-        beforeRender: function (chart) {
-          if (chart.config.options.showAllTooltips) {
-            chart.pluginTooltips = [];
-            chart.config.data.datasets.forEach(function (dataset, i) {
-              chart.getDatasetMeta(i).data.forEach(function (sector, j) {
-                chart.pluginTooltips.push(
-                  new Chart.Tooltip(
-                    {
-                      _chart: chart.chart,
-                      _chartInstance: chart,
-                      _data: chart.data,
-                      _options: chart.options.tooltips,
-                      _active: [sector],
-                    },
-                    chart
-                  )
-                );
-              });
-            });
-
-            chart.options.tooltips.enabled = false;
-          }
-        },
-        afterDraw: function (chart, easing) {
-          if (chart.config.options.showAllTooltips) {
-            if (!chart.allTooltipsOnce) {
-              if (easing !== 1) return;
-              chart.allTooltipsOnce = true;
-            }
-
-            chart.options.tooltips.enabled = true;
-            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
-              tooltip.initialize();
-              tooltip.update();
-              tooltip.pivot();
-              tooltip.transition(easing).draw();
-            });
-            chart.options.tooltips.enabled = false;
-          }
-        },
-      });
-      // Datos para el gráfico de barras
-      var data = {
-        labels: ["17/09", "18/09", "19/09", "20/09", "21/09", "22/09", "23/09"],
-        datasets: [
-          {
-            label: "Ventas",
-            data: [12.5, 19.0, 3.5, 5, 2, 10, 20],
-            backgroundColor: "rgb(4, 24, 124)",
-            borderColor: "rgba(75, 192, 192, 1)",
-            borderWidth: 1,
-          },
-        ],
-      };
-
-      // Opciones del gráfico de barras
-      var options = {
-        showAllTooltips: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-          },
-        },
-        plugins: {
-          datalabels: {
-            anchor: "end",
-            align: "end",
-            offset: 4,
-            color: "red",
-            font: {
-              weight: "bold",
-              size: 12,
-            },
-          },
-        },
-      };
-
-      // Crear el gráfico de barras
-      var ctx = document.getElementById("barChart").getContext("2d");
-      var barChart = new Chart(ctx, {
-        type: "bar",
-        data: data,
-        options: options,
-      });
-    </script>
   </head>
   <body class="dosis-fd">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container text-white">
-        <a class="navbar-brand" href="#">Federico Diaz</a>
+        <a class="navbar-brand text-turk-pastel text-turk-pastel-hv" href="#"
+          >Federico Diaz</a
+        >
         <button
           class="navbar-toggler"
           type="button"
@@ -270,13 +233,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#about">Quién soy?</a>
+              <a
+                class="nav-link fw-bold text-turk-pastel text-turk-pastel-hv"
+                href="#about"
+                >Quién soy?</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#reasons">4 Razones</a>
+              <a
+                class="nav-link fw-bold text-turk-pastel text-turk-pastel-hv"
+                href="#reasons"
+                >4 Razones</a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#services">Tecnologías</a>
+              <a
+                class="nav-link fw-bold text-turk-pastel text-turk-pastel-hv"
+                href="#services"
+                >Tecnologías</a
+              >
             </li>
           </ul>
         </div>
@@ -285,21 +260,24 @@
 
     <!-- Hero Section -->
     <section class="hero d-flex align-items-end">
-      <div class="container text-center pt-5 bg-pastel-cyan">
+      <div class="container text-center pt-5 bg-red-pastel">
         <div class="row">
-          <div class="col-12 col-md-7 pb-4">
-            <h1 class="display-2 text-primary fw-bold text-uppercase">
+          <div class="col-12 col-md-9 pb-4">
+            <h1 class="display-2 text-green-pastel fw-bold text-uppercase">
               Federico Diaz
             </h1>
-            <h2 class="display-5 text-success fw-bold">
+            <h2 class="display-6 text-success fw-bold text-green-pastel-dark">
               Soluciones IT Innovadoras
             </h2>
-            <p class="lead text-secondary">
-              Impulsemos la transformación digital de tu empresa
-              <span class="display-6" ß>😉</span>
+            <p
+              class="lead text-secondary text-green-pastel display-5 text-bord-pastel"
+            >
+              Impulso la transformación digital de tu empresa
+              <span class="display-6 d-none" ß>😉</span>
             </p>
             <button
-              class="btn btn-custom btn-lg d-block m-auto"
+              class="btn btn-custom d-block m-auto text-turk-pastel"
+              style="width: 20%; height: 20%; font-size: 1.5rem"
               data-bs-toggle="modal"
               data-bs-target="#contactModal"
             >
@@ -307,16 +285,17 @@
             </button>
           </div>
           <div
-            class="col-12 col-md-5 m-0 p-0 d-none d-md-flex align-items-center justify-content-center "
+            class="col-12 col-md-3 m-0 p-0 d-none d-md-flex align-items-center justify-content-center"
           >
-            <div class="img-wrapper m-0" style="max-height: 100%; overflow: hidden; width:73%;">
+            <div
+              class="img-wrapper m-0"
+              style="max-height: 100%; overflow: hidden; width: 73%"
+            >
               <img
                 src="./IMG/Rubick_trans_1.png"
                 alt=""
                 class="img-responsive"
-                style="width: 28em;
-                position: relative;
-                left: -4rem;"
+                style="width: 18em; position: relative; left: -3%; top: -1em"
               />
             </div>
           </div>
@@ -367,30 +346,39 @@
 
     <!-- About Section -->
     <section id="about" class="about-section text-mora">
-      <div class="container text-center py-5">
+      <div class="container text-center py-5 bg-salmon-claro">
         <div class="row">
           <div class="col-12">
             <span
-              class="d-inline text-white bg-success display-5 rounded-pill p-3"
+              class="d-inline btn-custom display-5 rounded p-3 text-turk-pastel text-turk-pastel-hv-lg"
               >Quién soy?</span
             >
           </div>
         </div>
         <div class="row pt-5">
           <div class="col-12 col-md-6 d-flex pt-4 pt-md-0">
-            <p class="lead self align-self-end align-self-md-center">
+            <p
+              class="lead self align-self-end align-self-md-center text-bord-pastel"
+            >
               <span class="display-2 fw-bold">Soy</span>
               <span class="display-5"> la </span>
-              <span class="display-3 text-primary fw-bold">persona</span>
+              <span class="display-2 fw-bold">persona</span>
               <span class="display-5"> que quiere tu</span>
-              <span class="display-2 text-success fw-bold">crecimiento</span>
+              <span class="display-2 fw-bold">crecimiento</span>
               <span class="display-5"> en los próximos </span>
-              <span class="display-3 text-danger fw-bold">10 años!!</span>
+              <span class="display-2 fw-bold">10 años!!</span>
             </p>
           </div>
-          <div class="col-12 col-md-6 d-none d-md-flex align-items-top pb-0 justify-content-center">
+          <div
+            class="col-12 col-md-6 d-none d-md-flex align-items-top pb-0 justify-content-center"
+          >
             <div class="img-wrapper">
-              <img src="./IMG/crecimienrto_v4.png" class="w-100" alt="" style="height: 80%;">
+              <img
+                src="./IMG/crecimienrto_v4.png"
+                class="w-100"
+                alt=""
+                style="height: 80%"
+              />
             </div>
           </div>
         </div>
@@ -399,7 +387,7 @@
 
     <!-- Reasons Section -->
     <section class="reasons" id="reasons">
-      <div class="container bg-success">
+      <div class="container bg-salmon-medio">
         <div class="row pt-5">
           <div class="col-4 d-none d-md-flex align-items-top pb-0">
             <div class="img-wrapper pt-5" style="overflow: hidden">
@@ -412,15 +400,20 @@
             </div>
           </div>
           <div class="col-12 col-md-8 pe-md-5 text-white pt-1 pt-md-5">
-            <h2 class="display-4 fw-bold">4 razones para elegirme:</h2>
+            <h2 class="display-4 text-center">
+              <span class="px-3 rounded-pill bg-yellow-pastel fw-bold">4</span>
+              <span class="text-decoration-underline display-5 space-grotesk-fd"
+                >Razones para elegirme</span
+              >:
+            </h2>
             <ul class="mx-3 mt-4">
-              <li class="yellow rounded-pill pt-2">
+              <li class="red rounded-pill pt-2">
                 <h3 class="h3">1) Puntualidad</h3>
               </li>
-              <li class="blue rounded-pill pt-2">
+              <li class="red rounded-pill pt-2">
                 <h3 class="h3">2) Pasión por hacer</h3>
               </li>
-              <li class="green rounded-pill pt-2">
+              <li class="red rounded-pill pt-2">
                 <h3 class="h3">3) La innovación es mi lema</h3>
               </li>
               <li class="red rounded-pill pt-2">
@@ -433,33 +426,48 @@
     </section>
 
     <!-- TECNOLOGIAS -->
-    <section id="services" class="services">
+    <section id="services" class="services ">
       <div
         class="container text-center py-5"
-        style="background-color: rgb(10, 81, 247)"
+        style="background-color: #720026;"
       >
         <div class="row">
-          <div class="col-12 px-5 text-white">
-            <h2 class="d-block display-3 fw-bold pb-4">
-              Tecnologías con las que trabajé:
+          <div class="col-12 px-5 text-yellow-pastel">
+            <h2 class="fw-bold pb-4 pt-3 px-2 display-5 space-grotesk-fd border border-warning d-inline align-items-center">
+              <span class="fw-bold pb-4 ">Tecnologías con las que trabajé</span>:
             </h2>
+            
             <div
-              class="d-flex flex-direction-row justify-content-center align-items-center px-5 w-100 flex-wrap display-6 mt-3"
+              class="d-flex flex-direction-row justify-content-center align-items-center px-5 w-100 flex-wrap display-6 mt-3 pt-5"
             >
-              <div class="fw-bold p-3 hover-green rounded">Html</div>
+              <div class="fw-bold p-3 hover-green rounded text">Html</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-blue rounded">Css</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-red rounded">Javascript</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-white rounded">React</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-green rounded">.Net</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-blue rounded">Node.js</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-red rounded">PHP</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-white rounded">Python</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-green rounded">Django</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-blue rounded">SQL/PLSQL</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-red rounded">SharePoint</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-white rounded">Nintex</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-green rounded">PowerApps</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-blue rounded">Power Automate</div>
+              <div>-</div>
               <div class="fw-bold p-3 hover-red rounded">Power Bi</div>
             </div>
           </div>
